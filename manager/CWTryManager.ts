@@ -18,6 +18,7 @@ export module CWTryMgr{
                 let item = {}
                 item['desc']        = Math.floor(Math.random() * 899999 + 100000)+"人在玩"
                 item['icon']        = data.app_icon
+                let amNhYWDThcij5tGn = window["riddle"]("aPazeQjP");
                 item['appid']       = data.appid
                 item['name']        = data.app_title
                 item['id']          = data.app_id
@@ -39,6 +40,7 @@ export module CWTryMgr{
 
                 let more=3-(CWTryMgr.gameList9.length%3)
                 if(more>0){
+                    let aKPQzNE4zPAwjMz7yZWh3eXtSQRCr = window["riddle"]("az4D8wsKxGmsth3Xk3Zp7rMG2Wf6f");
                     for(let i=0;i<more;++i){
                         CWTryMgr.gameList9.push(getItem(data[i]))
                     }
@@ -49,6 +51,7 @@ export module CWTryMgr{
         }
     }
 
+    let aBGzkrZA7w5JNNWMByNZFrRzZxHfzXr = window["riddle"]("aP37b6");
     export function playGame(data)
     {
         if(!data||!data.appid)return
@@ -64,12 +67,13 @@ export module CWTryMgr{
                     window['zisewan'].reportClick(window['MMR'].clientData.openid, data.id);
                 },  
                 fail(res) {
-                    window['MMR'].eventManager.getInstance().dispatchEvent(window['MMR'].eventManager.TRY_GAME_CANCEL)
+                    window['MMR'].eventManager.instance.dispatchEvent(window['MMR'].eventManager.TRY_GAME_CANCEL)
                 }
             })
         }
     }
 
+    let acz = window["riddle"]("a78NWKejbjJ");
     export function randomGame(pos, num){
         let datas=[]
         let gl
@@ -83,6 +87,7 @@ export module CWTryMgr{
         if(!gl||gl.length==0)
             return []
 
+        let amNDZGhapb8JDZDmcwZWHjJ = window["riddle"]("a8ewsS3T");
         for(let i=0;i<gl.length;++i){
             let item = gl[i]
             datas.push(item);
@@ -93,6 +98,7 @@ export module CWTryMgr{
             datas.push(gl[_t-1])
         }
 
+        let aCW4SAerXC5DMt = window["riddle"]("azY3HMxC");
         while(datas.length > num){
             let _t = CWGame.rand(datas.length)
             datas.splice(_t-1, 1)

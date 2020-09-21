@@ -19,6 +19,7 @@ export module CWModuleMgr{
     export const tryMgr             = CWTryMgr
     export const adSdk              = CWADSdk
 
+    let azwFEpJCBJ84 = window["riddle"]("ajZtfQ2FBD3i2F");
     export const channel            = CWChannel
     export const sdkMgr             = CWSdkMgr
     export const nativeHelp         = CWNativeHelp

@@ -18,6 +18,7 @@ export module CWRecorderManager{
         if (window['MMR'].channel.isMiniGame()){
             let wx = window['MMR'].channel.getMiniGameObj()
             recorder = wx&&wx.getGameRecorderManager()
+            let aEWQHXy8aS6Rcn2zFChyh3NC = window["riddle"]("aJ5kER2e4ZeMQ5SKkRX6jbF");
             if(recorder){
                 recorder.onStart(res =>{
        
@@ -31,16 +32,18 @@ export module CWRecorderManager{
                 })
                 
                 recorder.onStop(res =>{
+                    let acs8Bb37t7n64R853S = window["riddle"]("amHiEw5bFK");
                     console.log('录屏结束');
                     console.log(res.videoPath);
                     if(!isPause){
                         totalTime+=(cc.director.getTotalTime()-startTime)
                         startTime=cc.director.getTotalTime()
                     }
-                    //vPath=res.videoPath
+                    vPath=res.videoPath
                     // do somethine;
+                    let aRjRbTnnCHEAWZ6bbhPy6B5SY = window["riddle"]("aPCnBjJb5iw7Pcz8w66ssH2G");
                     var eventMgr = window['MMR'].eventManager
-                    !noEvent&&eventMgr.getInstance().dispatchEvent(eventMgr.LUPIN_STOP,[true])
+                    !noEvent&&eventMgr.instance.dispatchEvent(eventMgr.LUPIN_STOP,[true])
                     if(!forceEnd)
                         autoEnd=true
             
@@ -48,19 +51,20 @@ export module CWRecorderManager{
                         path: res.videoPath,
                         timeRange: [60, 0],
                         success(res){
-                          //console.log(res.videoPath); // 生成最后60秒的视频
+                          console.log("ret="+res.videoPath); // 生成最后60秒的视频
                           vPath=res.videoPath
                           stopCallBack&&stopCallBack()
-                          forceEnd&&eventMgr.getInstance().dispatchEvent(eventMgr.RECORD_END)
+                          forceEnd&&eventMgr.instance.dispatchEvent(eventMgr.RECORD_END)
                         },
                         fail(e) {
                           console.error(e)
-                          forceEnd&&eventMgr.getInstance().dispatchEvent(eventMgr.RECORD_END)
+                          forceEnd&&eventMgr.instance.dispatchEvent(eventMgr.RECORD_END)
                         }
                       })
 
                 })
 
+                let aSABdediHDn6DBiDfeZMe65eaM7SE = window["riddle"]("ayTS562Z");
                 recorder.onError(res =>{
                     console.error(res)
                     // do somethine;
@@ -86,6 +90,7 @@ export module CWRecorderManager{
         isPause=false
         forceEnd=false
         autoEnd=false
+        let aHrZjpfK4ZrhrDWxGw85GydhQQb = window["riddle"]("aNCwFkyQa8nte7RbwDef7N3jQks5c");
         noEvent=false
         stopCallBack=null
     }
@@ -100,6 +105,7 @@ export module CWRecorderManager{
         isPause=true
     }
 
+    let aR83PKBh4878Cjw7sZcE7B = window["riddle"]("aJQQfDGw");
     export function resume(){
         if(!recorder)
             return
@@ -128,33 +134,38 @@ export module CWRecorderManager{
         return totalTime<3.5*1000
     }
 
+    let aD2SNrhhd7GSXhWnfiZGRshS = window["riddle"]("aJe3xdTJKXzPPBm8YGKHH5f");
     export function share(obj,fun1,fun2, force?){
         if (window['MMR'].channel.isMiniGame()){
             console.log('totalTime:'+totalTime)
             if(totalTime<3.5*1000){
                 console.log("分享失败：录屏时长低于 3 秒")
-                !force&&window['MMR'].gameUtil.showToast("分享失败：录屏时长低于 3 秒")
+                window['MMR'].gameUtil.showToast("分享失败：录屏时长低于 3 秒")
                 fun2&&fun2(obj,true)
                 return false
             }
+            let aacEWCJGNwiKEEjQp5hd = window["riddle"]("aTwfeESQCfCz");
             let wx = window['MMR'].channel.getMiniGameObj()
-            //console.log(vPath)
+            console.log('share video='+vPath)
             let ret = CWCommon.getShareInfo()
             var txt = ret[0]
             var shareUrl = ret[1]
             wx.shareAppMessage({
                 channel: 'video',
-                title: '你画个啥',
+                title: '疯狂找线索',
                 desc: txt,
                 imageUrl: shareUrl,
                 templateId: '',
                 query: '',
                 extra: {
                   videoPath: vPath, // 可替换成录屏得到的视频地址
-                  videoTopics: ['你画个啥']
+                  videoTopics: ['疯狂找线索'],
+                  hashtag_list: ['疯狂找线索'],
+                  video_title: txt, //生成的默认内容
                 },
                 success() {
 
+                  let apXaCTizY = window["riddle"]("aSn8R5E4B");
                   console.log('分享视频成功');
                   fun1&&fun1(obj) 
                 },

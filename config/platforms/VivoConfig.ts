@@ -39,7 +39,7 @@ export const WX_REMOTE_SERVER_ROOT = 'https://cdn.birdfly.sy3.com/dinosaur/v1.0.
 export const WX_REMOTE_LOAD_DIRECTORY = [     //远程加载目录
 
 ];
-
+let aky7XBTjMTwasNeMeZ4F = window["riddle"]("a7Wa");
 export const WX_REMOTE_SETTINGS_FILE_URL = 'https://cdn.birdfly.sy3.com/dinosaur/webSettings_wx.json';  //远程开关文件URL
 export const WX_CITY_BANNER_CASUAL_BLOCK_URL = 'https://mergefarm.sy3.com/city-block.php';   //城市屏蔽接口地址
 export const WX_SELF_SERVER_APP_ID = 5; //自有服务器游戏Id
@@ -60,11 +60,10 @@ export const WX_ALL_SUBPACKAGES = [   //所有的分包
     'level10',
     'level11',
     'level12',
-    'level13',
-    'level14',
-    'level15'
-];
+    'level13'
 
+];
+let aeHKN2FsD6FAwrefinRBzrtWw = window["riddle"]("a5RjNZ");
 export const WX_PRELOAD_SUBPACKAGES = [   //需要预读的分包
     'sub1',
     'sub2'
@@ -84,8 +83,6 @@ export const WX_REMOTE_SUBPACKAGES = {
     'level10':true,
     'level11':true,
     'level12':true,
-    'level13':true,
-    'level14':true,
-    'level15':true
+    'level13':true
 };
 

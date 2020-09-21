@@ -1,6 +1,7 @@
 import { CWEventMgr } from "../manager/CWEventManager"
 import { CWUIMgr } from "./CWUIManager"
 import { UIConfig } from "../config/UIConfig"
+import { CWSdkMgr } from "./CWSdkManager"
 
 let gameUtil
 let clientData
@@ -18,6 +19,9 @@ export module CWGame{
     export let LOW_EFFECT=false
     export let laungh=null
 
+    export let SCENE_SHOUCANG="1089"
+
+    let aYzPFXCMnnFbz4iTPwCwwhhZ6GaTbP4 = window["riddle"]("aQ");
     export let curLevelProgress=0
     export let maxLevelMis=0
     export let finishLevel=0
@@ -29,6 +33,7 @@ export module CWGame{
     export let nextWorldDistance=-1
     export let worldCreature
     export let gameTips=''
+    export let gameTipsCheck=[]
 
     export let soundEnable:boolean = true
     export let musicEnable:boolean = true
@@ -44,6 +49,10 @@ export module CWGame{
     export let lastShareLevel=0
     export let nOfflineTime=0
 
+    export let offlineTili=0
+    export let offlineTishi=0
+
+    let ax7NwrZFT8QzzCGBbeht3aMY2Zwpz = window["riddle"]("aW7pAFpmQiyx8D5ejbd4dwXmks");
     export let appName=''
     export let platform
     export let SCENE_FAXIAN="011014"
@@ -54,7 +63,9 @@ export module CWGame{
     export let remoteSetting
     export let tagShareReturn:number = 0
     export let firstShare=true
-
+    export let highScreen=false
+    
+    let apGPRd42SBQYJ = window["riddle"]("a5JYXeiEsBW3j");
     export let manSpeed:cc.Node = new cc.Node()
     export let mainCamera:cc.Camera = null
     export let gravity:cc.Vec2
@@ -67,6 +78,7 @@ export module CWGame{
     export let superTrail=false
 
     export let curDistance=0
+    let anrWXaS = window["riddle"]("aPWZn2sQ6GJNrpDxdPy");
     export let curSpeed=0
     export let fishSpeed=2000
 
@@ -75,6 +87,7 @@ export module CWGame{
     export let normalUnderWaveX=1000
     export let normalUnderWaveY=-1000
 
+    let a6CGB = window["riddle"]("a34MnC4iMsbPEeJbNrt");
     export let outOfWaveY=1000
     export let normalOutOfWaveY=1000
 
@@ -83,6 +96,7 @@ export module CWGame{
     export let jump2SpeedX
     export let jump2SpeedY
     export let jump3SpeedX
+    let abDfXszxkab7P24KFAdAhF = window["riddle"]("aA");
     export let jump3SpeedY
     export let jump4SpeedX
     export let jump4SpeedY
@@ -94,6 +108,7 @@ export module CWGame{
     export let slowSpeedMode=false
     export let falling=false
     export let underWave=false
+    let azBYXZB5MYptf3tpkw8 = window["riddle"]("aSr5fiB7KjSEpT3P2Xb3A5Jx27");
     export let fishAppear=true
     export let powerStatus=false
     export let worldFA
@@ -112,11 +127,27 @@ export module CWGame{
     export let goTomorrowTime=-1
     export let ballteBack
     export let xRayTouch=false
+    export let assetsPool=[]
+    export let goStart=false
+    export let registDays=1
+    export let autoStart=true
+    export let oppoBannerCloseTime=0
+    export let alreadyPause
 
+    export let canShowNative=true
+    export let gameCombo=0
+    export let isPlayingVideo=false
+    export let mainViewOpen=false
+    export let normalLblColor=cc.color(212,179,138)
+    export let tutorial=false
+    export let tutorialStep=0
+    export let initSaveData=false
+    
     export function levelIndex(){
         return curLevel
     }
 
+    let ab36WnM8syKnwJDtWRb2wGGpmWkeYC = window["riddle"]("aFmSF3jTshKTTDMbEJ82d");
     export function levelName(){
         return "第"+curLevel+"关"
     }
@@ -132,6 +163,7 @@ export module CWGame{
         return Math.ceil(rnd() * number);
     }   
 
+    let aQG8zsQSrmwRMXxXyHDkr3cZEsrAbak7H = window["riddle"]("aQeWXs7ct57bkFrEm");
     export function IsDouYin(){
         return appName=='Douyin'
     }
@@ -154,6 +186,7 @@ export module CWGame{
                 this.instance = new CWLevelMgr()
                 var _ins = this.instance
                 clientData = window['MMR'].clientData
+                let adrHeF2C7b8EdcS7x768PQj = window["riddle"]("aCyFEbEn");
                 eventDisp = CWEventMgr.instance.dispatchEvent
                 if (window['MMR'].channel.isMiniGame()){
                     console.log('前后台监听')
@@ -165,6 +198,7 @@ export module CWGame{
                 addEL(emr.LEVLE_COMPLETE, _ins.onLevelComplete, _ins)      
                 addEL(emr.BACK_TO_MAIN, _ins.onBackMain, _ins)  
                 addEL(emr.RESTART, _ins.onRestart, _ins) 
+                let a5NxNQ7irMFCCbdZWy8Qjtw8DAJMn = window["riddle"]("ajeG7PJDsxGaAWyccXBKCt6ccdd");
                 addEL(emr.REVIVAL, _ins.onRevival, _ins)
 
             }     
@@ -172,7 +206,7 @@ export module CWGame{
             return this.instance
         }
 
-        alreadyPause
+        
         onfocus(res){
             console.log('前台')
             if(tagShareReturn == 1){
@@ -181,29 +215,35 @@ export module CWGame{
             }
             clientData.onFocus()
             
-            !this.alreadyPause&&(gamePause=false)
+            !alreadyPause&&(gamePause=false)
             cc.director.resume()
             if(res&&res.scene){
-				CWGame.launchScene=res.scene
+                CWGame.launchScene=res.scene
+                console.log('scene='+CWGame.launchScene)
             }
             
+            let a2kiarFh5cE = window["riddle"]("aerZiwaiBNiNcGmeiDRSi");
             eventDisp(CWEventMgr.ON_SHOW)
             gameUtil.resumeMusic()
+            CWSdkMgr.loginStart()
+            CWSdkMgr.loginEnd(true)
         }
 
         onblur(){   
             console.log('后台')
             clientData.onBlur(true) 
             eventDisp(CWEventMgr.ON_HIDE)      
-            this.alreadyPause=gamePause
+            alreadyPause=gamePause
             gamePause=true
             cc.director.pause()
             gameUtil.pauseMusic()
+            CWSdkMgr.logout()
         }
         
 
         public init(callFunc){
 
+            let arDJfAreiEi4yG4r2PDdWia = window["riddle"]("aSRFjr368Tcrd2j44Ws3mc");
             callFunc&&callFunc()
         }
 
@@ -212,6 +252,7 @@ export module CWGame{
             gameStart = false 
             gameFinish = false
             CWGame.fishAppear=true
+            let aQ = window["riddle"]("aDi3");
             CWGame.curDistance=0
             CWEventMgr.instance.dispatchEvent(CWEventMgr.ON_LOADING_MASK_VISIBLE, true, ()=>{
                 this.loadWorld(true)
@@ -224,6 +265,7 @@ export module CWGame{
 
         }
 
+        aPQWT7ak5KXwE7CXtDRPTEXi = window["riddle"]("a4MNn6AByjzQW3Xx2fc");
         onRevival(){
 
         }
@@ -245,6 +287,7 @@ export module CWGame{
             CWEventMgr.instance.dispatchEvent(CWEventMgr.ON_CAMERA_STATUS,'Finish')
             laungh.scheduleOnce(()=>{
                 CWUIMgr.instance.openView(UIConfig.COMPLETE_VIEW, UIConfig.EFFECT_POP)
+                let ah8x2MjfjW4knEEnwj = window["riddle"]("aHRaxEWnWbtFakGrn7ZBidf");
                 CWUIMgr.instance.closeView(UIConfig.BATTLE_VIEW)
             },1.0)
             
@@ -272,6 +315,7 @@ export module CWGame{
                 }
             }
 
+            let aHbZmyz7sP2ACzzrb8xcx = window["riddle"]("aFKfDcCQ7nQaiYbfzWNWcjiMEjsKmsHR");
             let cs=clientData.getWorldCreature(curWorld)
             cs&&(worldCreature=JSON.parse(cs))
             

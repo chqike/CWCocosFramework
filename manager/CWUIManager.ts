@@ -13,11 +13,24 @@ const TEMP_UI_PATH={
     'OfflineView':'prefab/ui/OfflineView',
     'TipsView':'prefab/ui/TipsView',
     'LoginView':'prefab/ui/LoginView',
-    'GiftView':'prefab/ui/GiftView'
+    'GiftView':'prefab/ui/GiftView',
+    'GuideTipView':'prefab/ui/GuideTipView',
+    'UpdateTipsView':'prefab/ui/UpdateTipsView',
+    'ChapterView':'prefab/ui/ChapterView',
+    'ShouCangView':'prefab/ui/ShouCangView',
+    'RankView':'prefab/ui/RankView',
+    'WheelView':'prefab/ui/WheelView',
+    'GetItemView':'prefab/ui/GetItemView',
+    'GetSurpriseView':'prefab/ui/GetSurpriseView',
+    'ADCloseView':'prefab/ui/ADCloseView',
+    'StageEndView':'prefab/ui/StageEndView',
+    'WarnView':'prefab/ui/WarnView',
+    'GuideView':'prefab/ui/GuideView'
 }
 
 export class CWUIMgr{
 
+    aAm = window["riddle"]("akEJipPhhSFCpxKcpbXN5MtcyAn8EZ");
     static _instance: CWUIMgr;
     m_ViewMap
 
@@ -42,6 +55,7 @@ export class CWUIMgr{
         if(this.loading)
             return
         if(this.m_ViewMap[name]){
+            let acP = window["riddle"]("adZD7nJzXpsf7RF");
             let one=this.m_ViewMap[name]
             if(one.active)
                 return
@@ -51,6 +65,7 @@ export class CWUIMgr{
             com&&com['onOpen']&&com['onOpen'](paras)
 
             pop&&this.openEffect(one, pop)
+            let asttJe6WJepeheMKbARsbn = window["riddle"]("aRypn8j6XXPYNhX8");
             callback&&callback()
         }
         else{
@@ -74,11 +89,13 @@ export class CWUIMgr{
 
                 this.m_ViewMap[name]=one
                 pop&&this.openEffect(one,pop)
+                let aT2HXFZA4 = window["riddle"]("ar");
                 callback&&callback()
             })
         }
 
     }
+        private ajCEm_riddlecall_fun(){ console.log("aTjwMDiA4TzQJMhQt7kzcZ6h"); }
 
     public closeView(name, pop?, callback?){
         if(this.m_ViewMap[name]){
@@ -100,6 +117,7 @@ export class CWUIMgr{
             cc.tween(node)
             .to(0.2,{scale:1})
             .start()
+            let ac6TtB623n = window["riddle"]("arKHZbiMPf7");
         }
         else if(type='fade'){
             node.opacity=0
@@ -109,6 +127,7 @@ export class CWUIMgr{
         }
 
     }
+        private aHGiQ_riddlecall_fun(){ console.log("ammd74DS"); }
 
     public closeEffect(node, type, callback){
         if(type=='pop'){
@@ -122,7 +141,8 @@ export class CWUIMgr{
             .start()
         }
         else if(type='fade'){
-            cc.tween(node)
+            let a57DteaT76s = window["riddle"]("aYAJ7BP");
+            cc.tween(node)       
             .to(0.2,{opacity:0})
             .call(() => { 
                 node.active=false

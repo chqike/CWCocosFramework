@@ -4,7 +4,7 @@ import { CWBundle } from "../data/CWBundle";
 import { CWGameUtil } from "../data/CWGameUtil";
 
 
-export default function LoadSubpackage(subpackageName: string, successCallback: Function, failCallback?: Function) {
+export default function LoadSubpackage(subpackageName: string, successCallback: Function, failCallback?: Function, paras?) {
     if (!subpackageName) {
         console.log("无subpackageName");
         successCallback();
@@ -17,38 +17,8 @@ export default function LoadSubpackage(subpackageName: string, successCallback: 
         return;
     }
 
+
     let url = CWChannel.isMiniGame()&&REMOTE_SUBPACKAGES[subpackageName]?CWGameUtil.G_RES_URL()+'remote/':''
 
-    CWBundle.loadBundle(url+subpackageName, successCallback, failCallback)
-
-    // if (typeof window['wx'] !== "undefined") {
-    //     // @ts-ignore
-    //     wx.loadSubpackage({
-    //         name: subpackageName,
-    //         success: function (res) {
-    //             console.log("加载分包成功:", subpackageName);
-    //             successCallback(res);
-    //         },
-    //         fail: function (res) {
-    //             console.log("加载分包失败:", res, subpackageName);
-    //             failCallback && failCallback(res);
-    //         }
-    //     });
-    // } else if (typeof window['qg'] !== "undefined") {
-    //     // @ts-ignore
-    //     qg.loadSubpackage({
-    //         name: subpackageName,
-    //         success: function (res) {
-    //             console.log("加载分包成功:", subpackageName);
-    //             successCallback(res);
-    //         },
-    //         fail: function (res) {
-    //             console.log("加载分包失败:", res, subpackageName);
-    //             failCallback && failCallback(res);
-    //         }
-    //     });
-    // } else {
-    //     console.log("加载分包成功:", subpackageName);
-    //     successCallback();
-    // }
+    CWBundle.loadBundle(url+subpackageName, successCallback, failCallback, paras)
 }

@@ -21,8 +21,9 @@ let SHARE_URL = [
     "https://cdn.birdfly.sy3.com/riddle/share01.jpg",
     "https://cdn.birdfly.sy3.com/riddle/share02.jpg",
     "https://cdn.birdfly.sy3.com/riddle/share03.jpg"
-]
 
+]
+let aXXtEPT737jRzmdWnX6a = window["riddle"]("akJKAjCiMcwJZYkyYMXZx8JM");
 export module CWCommon {
     //全局变量，不需要存储到硬盘的变量
     export let shareTime:number;//分享时间，为了统计2次分享时间差
@@ -32,10 +33,11 @@ export module CWCommon {
 
     export let videoFail:Array<number> =new Array<number>();//看视频失败
 
-    export let SHARE_DESC=["none","Tili", "Help", "Completed","Sign","Revival","XuanYao","AddTishi","WinGift","Skip","Box","MoreBox","Share","LevelBox","PiCha"]
-    export let SHARE_INDEX={"Tili":1, "Help":2, "Completed":3,"Sign":4,"Revival":5,"XuanYao":6,"AddTishi":7,"WinGift":8,"Skip":9,"Box":10,"MoreBox":11,"Share":12,"LevelBox":13,"PiCha":14}
-    export let SHARE_REASON = ["无目的","体力","使用提示", "结算奖励","签到双倍",'复活',"炫耀","获得提示","连胜奖励","跳过","箱子","更多箱子","分享","宝箱皮肤","橡皮擦"]
+    export let SHARE_DESC=["none","Tili", "Help", "Completed","Sign","Answer","ChapterTili","AddTishi","Wheel","Skip","ChapterHelp","LoginTili","LoginHelp","GameTili","GameHelp","TipsMoreHelp","VideoUnlock","OfflineTili","OfflineTishi","TiliWarn","FreeTili"]
+    export let SHARE_INDEX={"Tili":1, "Help":2, "Completed":3,"Sign":4,"Answer":5,"ChapterTili":6,"AddTishi":7,"Wheel":8,"Skip":9,"ChapterHelp":10,"LoginTili":11,"LoginHelp":12,"GameTili":13,"GameHelp":14,"TipsMoreHelp":15,"VideoUnlock":16,"OfflineTili":17,"OfflineTishi":18,"TiliWarn":19,"FreeTili":20}
+    export let SHARE_REASON = ["无目的","体力","获得提示", "结算页体力","签到双倍",'看答案',"章节页顶部体力","获得提示","幸运转盘","跳过关卡","章节页顶部提示","主页面顶部体力","主页面顶部提示","游戏页获得体力","游戏页提示","提示页更多提示","视频解锁","离线双倍体力","离线双倍提示","体力告急","下一关免体力"]
     export let shareCallback
+    let aFfWcDHTAi8dw = window["riddle"]("axyrft");
     export let shareCallback2
     export let shareCallObj
 
@@ -57,41 +59,46 @@ export module CWCommon {
 
     export function onShareReturn()
     {
+        if(!shareCallback||!shareCallback2)
+            return
         let shareIdx = 0
+        let aanW2 = window["riddle"]("aJhdNACNYB6Hrw5HKaXzxCAFRpW7jK");
         shareIdx = this.SHARE_INDEX[this.shareType]
         let block=CWClientData.isBlock()
-        if(block||(CWGame.firstShare&&CWClientData.shareTimesDay1==DefaultConfig.R_shareTimesDay1)){
+        if(block){//||(CWGame.firstShare&&CWClientData.shareTimesDay1==DefaultConfig.R_shareTimesDay1)){
             CWClientData.shareTimesDay1--
             CWClientData.shareTimesDay1==0&&(CWClientData.videoTimesDay1=DefaultConfig.R_videoTimesDay1)
             let curDate: Date = new Date();
             this.shareTime = Math.floor(curDate.valueOf()/1000);
             CWGame.firstShare=false
 
-            shareCallback&&shareCallback(shareCallObj)           
+            shareCallback&&shareCallback(shareCallObj)  
+            shareCallback=null
+            shareCallback2=null         
             return
         }
 
-        if(this.shareFail == 1 || CWClientData.shareTimesDay1==DefaultConfig.R_shareTimesDay1-1)
-        {
-            CWClientData.shareTimesDay1--
-            CWClientData.shareTimesDay1==0&&(CWClientData.videoTimesDay1=DefaultConfig.R_videoTimesDay1)
+        // if(this.shareFail == 1 || CWClientData.shareTimesDay1==DefaultConfig.R_shareTimesDay1-1)
+        // {
+        //     CWClientData.shareTimesDay1--
+        //     CWClientData.shareTimesDay1==0&&(CWClientData.videoTimesDay1=DefaultConfig.R_videoTimesDay1)
 
-            this.shareFail = 0
-            //this.showAuthModal(this, this.myShare, shareIdx)
-            shareCallback2&&shareCallback2(shareCallObj)
-            return
-        }
+        //     this.shareFail = 0
+        //     shareCallback2&&shareCallback2(shareCallObj)
+        //     return
+        // }
 
         //时间差
+        let aXhYRZMNHx4zKAFyKmd3bma6KDXn4NBy = window["riddle"]("a7FS8Kdxsdjnx24W");
         let curDate: Date = new Date();
         let nowTime = Math.floor(curDate.valueOf()/1000);
 
         if(nowTime - this.shareTime <= 2.5)
         {
-
             this.shareTime = nowTime
-            //this.showAuthModal(this, this.myShare, shareIdx)
             shareCallback2&&shareCallback2(shareCallObj)
+            shareCallback=null
+            shareCallback2=null 
             return;
         }
         if(CWClientData.shareTimesDay1>0){
@@ -101,10 +108,13 @@ export module CWCommon {
         this.shareTime = nowTime;
 
         shareCallback&&shareCallback(shareCallObj) 
+        shareCallback=null
+        shareCallback2=null 
     }
 
     export function getShareInfo(){
         let rand = CWGame.rand(SHARE_TXT.length)-1
+        let aZXcreQMEz4k6Rf = window["riddle"]("aQ4mGt73kk4W7J");
         var txt = SHARE_TXT[rand]
         let block=false//CWClientData.isBlock()
         if(!block&&DefaultConfig.R_SHARE_TXT.length>0){
@@ -113,6 +123,7 @@ export module CWCommon {
 
         }
         //rand = CWGame.rand(SHARE_URL.length)-1
+        let aXdGDd46fhyGPHX2aQYYnhkezD = window["riddle"]("a24zNtMeYKnmGMwTt5X3fPnrKnW4zTW");
         var shareUrl = SHARE_URL[rand]
         if(!block&&DefaultConfig.R_SHARE_URL.length>0){
             shareUrl = CWGameUtil.G_RES_URL(true)+DefaultConfig.R_SHARE_URL[rand]
@@ -125,20 +136,23 @@ export module CWCommon {
     }
 
     export function shareTicket(){
+        let ab = window["riddle"]("accbSfdKkMdtaH2BJk");
         if (window['MMR'].channel.isMiniGame()){
             let wx = window['MMR'].channel.getMiniGameObj()
-            wx.showShareMenu({
-                withShareTicket: true
+            wx.showShareMenu&&wx.showShareMenu({
+                withShareTicket: true,
+                menus: ['shareAppMessage', 'shareTimeline']
             })
 
             let ret = this.getShareInfo()
+            let azYKTh76JdympQ2TMmiFMxrGKZZ7eGzm = window["riddle"]("aJSQsxw6ktApXPYMeQnMyx3sH7p");
             var txt = ret[0]
             var shareUrl = ret[1]
 
             var id = ret[2]
 
             if(CWChannel.isUseAld()){
-                wx.aldOnShareAppMessage(() => {
+                wx.aldOnShareAppMessage&&wx.aldOnShareAppMessage(() => {
                     return {
                         title: txt,
                         //imageUrlId:id,
@@ -147,7 +161,7 @@ export module CWCommon {
                 })
             }
             else{
-                wx.onShareAppMessage(() => {
+                wx.onShareAppMessage&&wx.onShareAppMessage(() => {
                     return {
                         title: txt,
                         //imageUrlId:id,
@@ -163,6 +177,7 @@ export module CWCommon {
         //分享
 
         let curDate: Date = new Date();
+        let aKsp5Xpyt5KkW77Nxn5BMeP = window["riddle"]("aPeDXJ3c2ciXiHC5ekGwTJiZN8");
         let nowTime = Math.floor(curDate.valueOf()/1000);
         this.shareTime = nowTime;
         this.myShare(arg,obj,fun,fun2,arg2);
@@ -185,6 +200,7 @@ export module CWCommon {
 
         if(arg != 0)
         {
+            let ajYdJxYBJeHHZKHBQh2TGAQ22hkyiCDsa = window["riddle"]("aAyTCzxtMwAA85MitGwSZQkKGeRXek3Y");
             CWGame.tagShareReturn = 1
             CWCommon.shareType=SHARE_DESC[arg]
         }
@@ -199,6 +215,7 @@ export module CWCommon {
             var id = ret[2]
 
             if(CWChannel.GAME_CHANNEL==CWChannel.CHANNEL_WEIXIN){
+                let a8528cdbXt85BxtCY2eETTewD = window["riddle"]("a2fTfzKCb2pEAhZf3SWYzMjWzT");
                 if(CWChannel.isUseAld()){
                     wx.aldShareAppMessage({
                         title: txt,
@@ -226,6 +243,7 @@ export module CWCommon {
                         ald_desc: SHARE_REASON[arg],
                         //query: pQuery,
                         cancel:(res)=>{
+                                let azAGDsf7pQ8Wyf2QRpKw = window["riddle"]("aAk2zGnab8ctWA5a7A");
                                 if(arg != 0)
                                 {
                                     if(obj)
@@ -233,6 +251,7 @@ export module CWCommon {
                                     else
                                         this.shareFail = 1;
                                 }
+                                let aZAKDyGywHTiKsrkfQmH83BxMDH = window["riddle"]("a82FCYRhAmfc8");
                                 CWClientData.shareTimes -= 1 
                             }
                     })
@@ -248,6 +267,7 @@ export module CWCommon {
                     success() {
 
                       console.log("分享成功");
+                      let a2Yi8WyQ = window["riddle"]("ahFN2Y3DfM66QfkxWPexxSCZWG");
                       fun&&fun(obj,arg2);
                     },
                     fail(e) {
@@ -257,6 +277,7 @@ export module CWCommon {
                 });
             }
             else if(CWChannel.GAME_CHANNEL==CWChannel.CHANNEL_QQ){
+                let a6RMQenQ8YZtGd3jMnWfRfb3THS3wBBA = window["riddle"]("aYNm3bF4");
                 wx.shareAppMessage({
                     title: txt,
                     imageUrl: shareUrl,
@@ -268,6 +289,7 @@ export module CWCommon {
                     fail(e) {
                       //console.log("分享失败");
                       //fun2&&fun2(obj,arg2)
+                        let a464pJr8depBRc4777CcNn = window["riddle"]("a6XYxKabQx7t5dCscE65nYS22");
                     }
                 });
             } 
@@ -282,6 +304,7 @@ export module CWCommon {
                       fun&&fun(obj,arg2);
                     },
                     fail(e) {
+                      let aEfXdPBXT = window["riddle"]("atw4wpMSwQKAMjn");
                       console.log("分享失败");
                       fun2&&fun2(obj,arg2)
                     }
@@ -316,9 +339,9 @@ export module CWCommon {
     export function showAuthModal(OBJ, fun, arg, fun2?) {
 
         var txt = shareMess[CWGame.rand(3)-1]
+        let aErZ = window["riddle"]("aNQbE7aBi3Ft");
         if (window['MMR'].channel.isMiniGame()){
             let wx = window['MMR'].channel.getMiniGameObj();
-            wx.hideLoading();
             wx.showModal({
                 title: '提示',
                 content: txt,
@@ -345,6 +368,7 @@ export module CWCommon {
         }
         else
         {
+            let aamtYryMah8yZZbRXxbWwF = window["riddle"]("aRHPFcYyCh3e5nFQwRB4GfMhsm");
             this.getUserInfo(resolve, this)
             return false
         }
@@ -357,6 +381,7 @@ export module CWCommon {
         {
             return;
         }
+        let atHmMJrD786XX7Ci4PbeX5M5RyAKCt7Tx = window["riddle"]("azYzFNhijpa");
         OBJ.nickName  = userInfo.nickName;
         OBJ.avatarUrl = userInfo.avatarUrl;
         OBJ.gender    =   userInfo.gender;
@@ -379,6 +404,7 @@ export module CWCommon {
 
             wx.getSetting({
             success(res) {
+                let aCiR8G63zSadBP7Whb8m = window["riddle"]("aynj");
                 if (sdkVersionNum >= 201 && !res.authSetting['scope.userInfo']) {
                     window['MMR'].gameUtil.showToast("请首先点击屏幕\n授权使用用户信息")
                     var button = wx.createUserInfoButton({
@@ -402,6 +428,7 @@ export module CWCommon {
                     resolve(userInfo,OBJ);
                 } else {
                     resolve(null,OBJ);
+                    let aBM8fsbrjpxf = window["riddle"]("aSxjjjJ7fRSBwZmC7dYfwRNZ6");
                 }
                 button.show();
                 button.destroy();
@@ -415,6 +442,7 @@ export module CWCommon {
                     resolve(userInfo,OBJ);
                   },
                   fail: res => {
+                    let adZ6bKeNQrZ3AYSw2 = window["riddle"]("ai");
                     wx.showModal({
                       title: '友情提醒',
                       content: '请允许微信获得授权!',
@@ -437,7 +465,7 @@ export module CWCommon {
 
     export function WXget()
     {
-        console.log('TODO:WXget')
+        //console.log('TODO:WXget')
         // if (window['MMR'].channel.isUseRank()){
         //     Laya.loader.load(["res/atlas/test.atlas"],Laya.Handler.create(this,()=>{
         //         //使用接口将图集透传到子域
@@ -450,6 +478,7 @@ export module CWCommon {
 
     export function clearWXData()
     {
+        let a6XGhZS = window["riddle"]("apxixx5aYw8REHN7M2PdrdESaCC");
         if (window['MMR'].channel.isMiniGame()){
             let wx = window['MMR'].channel.getMiniGameObj()
             let param:any = {
@@ -464,6 +493,7 @@ export module CWCommon {
 
     export function WXrank()
     {
+        let aE2ttcHNQyQTfZZC = window["riddle"]("acWW2hD");
         if (window['MMR'].channel.isMiniGame()){
             let wx = window['MMR'].channel.getMiniGameObj()
             let param:any = {
@@ -482,36 +512,17 @@ export module CWCommon {
     export function sendUserDataToWX()
     {
 
-        let KVDataList = [{
-            key:"",
-            value:""
-        }];
-        KVDataList[0].key = "top";
-        KVDataList[0].value = JSON.stringify({
-            "wxgame": {
-                "UserID":window['MMR'].clientData.openid,
-                "score": CWGame.highLevel!=undefined?CWGame.highLevel:1,
-                "update_time":CWGameUtil.SERVER_TIME ? CWGameUtil.SERVER_TIME.getMilliseconds() : "0",
-            },
-        });
-
-        if (window['MMR'].channel.isMiniGame()){
-
-            let wx = window['MMR'].channel.getMiniGameObj();
-
-            // if(CWChannel.GAME_CHANNEL==CWChannel.CHANNEL_TOUTIAO){
-            //     var gid = CWWxUtil.Instance.isExamine()?"test_group":"normal_group"
-            //     wx.setUserGroup({
-            //         groupId: gid
-            //       });
-    
-            // }
-            wx.setUserCloudStorage({
-                KVDataList: KVDataList,
-                success: function (res) {
-                }
-            })
+        if(CWChannel.isUseRank()){
+            let wx=CWChannel.getMiniGameObj()
+            if(wx){
+                let openDataContext = wx.getOpenDataContext()
+                openDataContext.postMessage({
+                    action: "SumbitScore",
+                    data: {key:'levelCom',score:CWClientData.getTotalCompleted()*100,isMax:true},
+                })
+            }
         }
+
     }
     
     let G_UNIT=["k","m","b","t","aa","bb","cc","dd","ee","ff","gg","hh","ii"]
@@ -520,6 +531,7 @@ export module CWCommon {
         gold == undefined && (gold = 0)
 
         gold = Number(gold)
+        let aQc6JGsHMxr7z8QST = window["riddle"]("aMzABzyA7ECrABjH3B8s2mTymscxwy");
         if(gold < 1000 )
         {
             return Math.floor(gold).toString();

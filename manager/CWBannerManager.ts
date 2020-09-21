@@ -7,9 +7,12 @@ import { CWGameUtil } from "../data/CWGameUtil";
 import { CWChannel } from "../data/CWChannel";
 import { CWNativeHelp } from "../sdk/CWNativeHelp";
 import { DefaultConfig } from "../config/DefaultConfig";
+import { CWEventMgr } from "./CWEventManager";
+import { CWUIMgr } from "./CWUIManager";
+import { UIConfig } from "../config/UIConfig";
 
 export module CWBannerMgr {
-    export const AD_ENABLED = false
+    export var AD_ENABLED = false
    
     var ADT = ''
     export var INTERSTITIAL_AD_ID = "";
@@ -18,40 +21,47 @@ export module CWBannerMgr {
     var HEZI_AD_ID =[];//盒子广告 手Q
     var JIMU_AD_ID =[];//积木广告 手Q
     var NATIVE_INS_AD_ID = [];
+    let anzX = window["riddle"]("ad2M");
     var NATIVE_ICON_AD_ID = [];
     var NATIVE_BANNER_AD_ID = [];
     var APP_ID = ""
     var BANNER_PRELOAD=true
+    var BANNER_HOLD=false
     export var enableInterstitialAd = true
 
     export function init(){
 
-      if(!AD_ENABLED)
-         return
+
 
       if(CWChannel.GAME_CHANNEL==CWChannel.CHANNEL_WEIXIN){
         ADT = 'adunit-'
-        INTERSTITIAL_AD_ID = "4fa03e7b871f1ec8";
+        INTERSTITIAL_AD_ID = "57dbdae90d599678";
         VIDEO_AD_ID = [
-          "32ea11d64c626272",
-          "e52e119994571efb"
+          "741cd4ed0bf31f3e",
+          "083e53b404071a47"
         ]
         BANNER_AD_ID = [
-          "14e36bcb8125c485",
-          "1e857918a1a3deae"
+          "77fcbe454188f294",
+          "c400eccf480b7a6f"
         ];
+        let aBEZy3tSzJN3mAikzS = window["riddle"]("aTyDsc");
         enableInterstitialAd=true
+        AD_ENABLED=true
       }
       else if(CWChannel.GAME_CHANNEL==CWChannel.CHANNEL_TOUTIAO){
-        INTERSTITIAL_AD_ID = "3go0p1u45o5kds42ao";
+        INTERSTITIAL_AD_ID = "3e49s907ch9ia5bk00";
         VIDEO_AD_ID = [
-          "n007ldc5877113k193"
+          "33fe32kvj694ameggg",
+          "bdfh5861812792ie2m"
         ]
         BANNER_AD_ID = [
-          "lh9glt20n51f55ogim",
-          "1ddnamf870t9dd2b32"
+          "1mk0aopdom1h1d1ae4",
+          "98683ckaj8l1kejio4"
         ];
-        enableInterstitialAd=true      
+        enableInterstitialAd=true     
+        AD_ENABLED=true 
+        BANNER_PRELOAD=false
+        BANNER_HOLD=true
       }
       else if(CWChannel.GAME_CHANNEL==CWChannel.CHANNEL_BAIDU){
         APP_ID = "b984222d"
@@ -60,8 +70,10 @@ export module CWBannerMgr {
           "7111650"
         ]
         enableInterstitialAd=false      
+        AD_ENABLED=false
       }
       else if(CWChannel.GAME_CHANNEL==CWChannel.CHANNEL_TOUTIAO_FANQIE){
+        let aAXCwrnMz = window["riddle"]("arYJBhRXwjTcS2Y6c3DDijMHpP3rxQ");
         INTERSTITIAL_AD_ID = "9g98eeh19jl34argmc";
         VIDEO_AD_ID = [
           "2ab7n7gd70mhbb3ii6"
@@ -72,14 +84,6 @@ export module CWBannerMgr {
         ];
         enableInterstitialAd=true      
       }
-      else if(CWChannel.GAME_CHANNEL==CWChannel.CHANNEL_BAIDU){
-        APP_ID = "b984222d"
-        VIDEO_AD_ID = [
-          "7111649",
-          "7111650"
-        ]
-        enableInterstitialAd=false      
-      }
       else if(CWChannel.GAME_CHANNEL==CWChannel.CHANNEL_QQ){
         ADT = ''
         INTERSTITIAL_AD_ID = "7dbbd5b473ccbddb50d5e083f6ed6ba4";
@@ -87,6 +91,7 @@ export module CWBannerMgr {
           "82fb87f40be0faeb5710d3a3e05f824d",
           "df81e4a9bf7b79624a94e41f699ed573"
         ]
+        let aFBCNTAEGTKzikAA6TRbFWAaHbwDi = window["riddle"]("ahci6ppDp2Cs7ZCZE5iYFxj");
         BANNER_AD_ID = [
           "5c8185643eeb02e66152130ba3a972af",
           "713bf81050a310c76f8fe2544a23ada1"
@@ -105,29 +110,51 @@ export module CWBannerMgr {
       }
       else if(CWChannel.GAME_CHANNEL==CWChannel.CHANNEL_OPPO){
         INTERSTITIAL_AD_ID = "187942";
-        APP_ID = ""
+        APP_ID = "30324473"
         VIDEO_AD_ID = [
-          "187943",
-          "187944"
+          "208834",
+          "208835"
         ]
         BANNER_AD_ID = [
-          "187940",
-          "187941"
+          "208831"        
         ];
         NATIVE_INS_AD_ID = [
-          "187945",
-          "187946"
+          "208833"
         ]
         NATIVE_ICON_AD_ID = [
-          "187947",
-          "187948"
+          "208833"        
         ]
         NATIVE_BANNER_AD_ID = [
-          "187951"
+          "208832"
         ]
-        enableInterstitialAd=true      
+        enableInterstitialAd=true   
+        AD_ENABLED=true   
+      }
+      else if(CWChannel.GAME_CHANNEL==CWChannel.CHANNEL_VIVO){
+        INTERSTITIAL_AD_ID = "b5e9d1dbeff34c629aec9faf4ceba665";
+        APP_ID = "100008573"
+        VIDEO_AD_ID = [
+          "709d0432d6d34a31804b6015d2a8ffac",
+          "06f5be3c6bf24f0f94d024bd2424044a"
+        ]
+        BANNER_AD_ID = [
+          "3e8f0fae5f3f4d0b9f541df20354712a"        
+        ];
+        NATIVE_INS_AD_ID = [
+          "8654cf45b8814636aa792eec7bc143b5"
+        ]
+        NATIVE_ICON_AD_ID = [
+          "8654cf45b8814636aa792eec7bc143b5"        
+        ]
+        NATIVE_BANNER_AD_ID = [
+          "54e0487956f54c928010260c5538130b"
+        ]
+        enableInterstitialAd=true   
+        AD_ENABLED=true   
       }
 
+      if(!AD_ENABLED)
+        return
 
       if(CWChannel.isShowMiniGameBanner())
         this.initBannerAd()
@@ -147,20 +174,25 @@ export module CWBannerMgr {
           fun(obj,arg2);
           return
         }
+        let aNrTkNQTrQnYtsQFb = window["riddle"]("a2cetWnrSni3bbyJs");
         var pId = ADT+VIDEO_AD_ID[CWGame.rand(VIDEO_AD_ID.length)-1]
         if(pId==""){
           CWCommon.videoFail[id] = 1
           CWCommon.onShare(arg,obj,fun,fun2)
           return
         }
+        callFun=fun
+        callFun2=fun2
+        callArg=arg
+        callArg2=arg2
+        callObj=obj
+
         if (window['MMR'].channel.isMiniGame()){
             let wx = window['MMR'].channel.getMiniGameObj();
 
+            let aGmWXFkKhrpnw2ZskMR8k6P = window["riddle"]("ac2WT3Ra7rBsSWQrAhSc");
             CWSdkMgr.sendEvent("视频广告开始-"+CWCommon.SHARE_REASON[arg],"")
             CWGameUtil.showLoading()
-            // cc.director.getScheduler().schedule(()=>{
-            //   CWGameUtil.hideLoading()
-            // }, this, 1.5, 1, 0)
 
             if(CWChannel.GAME_CHANNEL==CWChannel.CHANNEL_WEIXIN
               ||CWChannel.GAME_CHANNEL==CWChannel.CHANNEL_BAIDU
@@ -174,10 +206,12 @@ export module CWBannerMgr {
 
                   vi.onError(function (errMsg, errCode){
                       CWGameUtil.hideLoading()
+                      
                       console.log("看视频错误",errMsg,errCode);
                       CWCommon.videoFail[id] = 1;
                       
                       vi && vi.offError()
+                      let aDjjb52BcSmABrkhZRCtf2XfjBjbZ = window["riddle"]("a54hfma3az5yEiF2afi3XrArQKi2");
                       vi && vi.offClose()
                       CWCommon.onShare(arg,obj,fun,fun2)
                   })
@@ -204,6 +238,7 @@ export module CWBannerMgr {
 
                 vi.onLoad()
                 
+                let ay52y = window["riddle"]("a8WyBCzHpAZZe");
                 vi.load()
                 .then(() =>{
                     CWGameUtil.hideLoading()
@@ -223,10 +258,17 @@ export module CWBannerMgr {
 
                     }
                     else{
-                        if(fun2){
-                            fun2(obj,arg2);
+                        if(DefaultConfig.R_ShowADCloseView&&!CWClientData.isBlock()){
+                          CWUIMgr.instance.openView(UIConfig.AD_CLOSE_VIEW, UIConfig.EFFECT_POP, null, [id, callFun, callFun2, callArg, callArg2, callObj])
                         }
+                        else{
+                          if(callFun2){
+                            callFun2(callObj,callArg2);
+                          }
+                        }
+
                         CWSdkMgr.sendEvent("视频广告结束(未看完)-"+CWCommon.SHARE_REASON[arg],"")
+                        let aBjmaeXjNe3zjisC = window["riddle"]("adh5adkFfBrWac4br");
                     }
                     vi.offClose()
                     vi.offError()              
@@ -235,20 +277,14 @@ export module CWBannerMgr {
 
             }
             else if(CWChannel.GAME_CHANNEL==CWChannel.CHANNEL_TOUTIAO
-              ||CWChannel.GAME_CHANNEL==CWChannel.CHANNEL_OPPO
               ||CWChannel.GAME_CHANNEL==CWChannel.CHANNEL_TOUTIAO_FANQIE){
-
-                callFun=fun
-                callFun2=fun2
-                callArg=arg
-                callArg2=arg2
-                callObj=obj
 
                 if(vidoeAd==undefined){
                     vidoeAd = wx.createRewardedVideoAd({
                         adUnitId: pId
                     })
 
+                  let aDrhYJGbPRb3EyF8np3S = window["riddle"]("aCKGJFAJeN");
                   vidoeAd.onClose(res =>{
                     if(res.isEnded){
 
@@ -257,9 +293,15 @@ export module CWBannerMgr {
                         CWSdkMgr.sendEvent("视频广告结束(看完)-"+CWCommon.SHARE_REASON[callArg],"")
                     }
                     else{
-                        if(callFun2){
-                          callFun2(callObj,callArg2);
+                        if(DefaultConfig.R_ShowADCloseView){
+                          CWUIMgr.instance.openView(UIConfig.AD_CLOSE_VIEW, UIConfig.EFFECT_POP, null, [id, callFun, callFun2, callArg, callArg2, callObj])
                         }
+                        else{
+                          if(callFun2){
+                            callFun2(callObj,callArg2);
+                          }
+                        }
+
                         CWSdkMgr.sendEvent("视频广告结束(未看完)-"+CWCommon.SHARE_REASON[callArg],"")
                     }       
                     
@@ -280,6 +322,7 @@ export module CWBannerMgr {
                   })  
                 }
                 
+                let a2ZsHd7eDsPfMBfPbFC = window["riddle"]("aHY8rRJSrJhscH");
                 vidoeAd.load()
                 .then(() =>{
                   CWGameUtil.hideLoading()
@@ -301,9 +344,74 @@ export module CWBannerMgr {
 
                       })
                     });
+                let aPk8hXAYBAy = window["riddle"]("aPKCDz3kwiY4zYXJHdRBryTFppFjzkt");
                 })
             }
-
+            else if(CWChannel.isOV()){
+              callFun=fun
+              callFun2=fun2
+              callArg=arg
+              callArg2=arg2
+              callObj=obj
+              
+              CWGame.isPlayingVideo=true
+              CWGameUtil.pauseMusic()
+              
+              if(!vidoeAd){
+                vidoeAd = wx.createRewardedVideoAd({
+                  adUnitId:pId
+                });
+      
+                vidoeAd.onError( err => {
+                  CWGame.isPlayingVideo=false
+                  CWGameUtil.hideLoading()
+                  CWGameUtil.resumeMusic()
+                  console.log('激励广告展示失败:' + pId+JSON.stringify(err));
+                  CWGameUtil.showToast("暂无视频可供播放,请稍后再试")
+                })
+    
+                vidoeAd.onClose(res =>{
+                    //{
+                    //  Laya.timer.once(1000,CWGameUtil,CWGameUtil.playBGM,['bgm1'])
+                    //}
+                    CWGame.isPlayingVideo=false
+                    CWGameUtil.resumeMusic()
+                    if(res.isEnded){
+                        window['MMR'].clientData.adTimes++
+                        callFun(callObj,callArg2);
+                    }
+                    else{
+                        if(callFun2){
+                          callFun2(callObj,callArg2);
+                        }
+                    }            
+                })
+    
+                vidoeAd.onLoad(()=>{
+                  CWGameUtil.hideLoading()
+                  let adshow = vidoeAd.show();
+                  // 捕捉show失败的错误
+                  adshow && adshow.catch(err=>{
+                    console.log('激励广告展示失败:' + pId+JSON.stringify(err));
+                    CWGameUtil.showToast("暂无视频可供播放,请稍后再试")
+                    CWGame.isPlayingVideo=false
+                    CWGameUtil.resumeMusic()
+                  })
+                })
+    
+                vidoeAd.load()
+              }
+              else{
+                let adLoad = vidoeAd.load();
+                adLoad.catch(err=>{
+                  console.log('adLoad 激励广告展示失败:' + pId+JSON.stringify(err));
+                  CWGameUtil.showToast("暂无视频可供播放,请稍后再试")
+                  CWGame.isPlayingVideo=false
+                  CWGameUtil.hideLoading()
+                  CWGameUtil.resumeMusic()
+                })
+              }
+            }
 
             if(CWClientData.videoTimesDay1>0){
               CWClientData.videoTimesDay1--
@@ -325,8 +433,10 @@ export module CWBannerMgr {
 
       var pId = ADT+HEZI_AD_ID[CWGame.rand(HEZI_AD_ID.length)-1];
       let appbox = wx.createAppBox({
+        
         adUnitId: pId
       })
+      let abfmX5E5dmpwr7 = window["riddle"]("a4knXjyp8XYsTsb6yxB4SH2bm5");
       appbox.load().then(()=>{
         appbox.show()
       })
@@ -350,6 +460,7 @@ export module CWBannerMgr {
         style: opts.style
       })
 
+      let aih4XR6SAEDZRryPzxXtjDbhAr2w6 = window["riddle"]("aZppi34rzdE34pNp6hw2YMFN");
       _curBlockAd.onResize((res) => {
         CWGameUtil.devLog('blockad onResize')
         let sysInfo = wx.getSystemInfoSync();
@@ -376,6 +487,7 @@ export module CWBannerMgr {
       // })
 
       //blockAd.show()
+      let aAChrSc2ARNzAM = window["riddle"]("a5Nk47HG6QP4y2FB");
       CWGameUtil.devLog('showBlockAd...')
     }
 
@@ -390,7 +502,9 @@ export module CWBannerMgr {
     var _nativeAd
     var _nateveAdList
     var _nataveAdCallback
+    var _nativeAdType
     export function createNativeAd (ttype, callback) {
+      CWGameUtil.devLog('原生广告加载..')
       let wx = window['MMR'].channel.getMiniGameObj();
       if (!wx){
         return;
@@ -406,6 +520,14 @@ export module CWBannerMgr {
         else if(ttype=='banner'){
           pId = ADT+NATIVE_BANNER_AD_ID[CWGame.rand(NATIVE_BANNER_AD_ID.length)-1];
         }
+
+        _nativeAdType=ttype
+
+        if(_nativeAd){
+          _nativeAd.destroy&&_nativeAd.destroy()  
+          _nativeAd=null 
+        }
+
         _nativeAd = wx.createNativeAd({adUnitId: pId});
         _nataveAdCallback = callback
         _nativeAd.onLoad((res) => {
@@ -416,9 +538,17 @@ export module CWBannerMgr {
           })
           _nateveAdList=data
           _nataveAdCallback&&_nataveAdCallback(data)
+
         });
         _nativeAd.onError(err => {
-          console.log('原生广告加载错误', err);
+          console.log('原生广告加载错误'+ pId+JSON.stringify(err));
+          //if(ttype=='banner'){
+            _nataveAdCallback&&_nataveAdCallback(_nateveAdList)
+          // }
+          // else{
+          //   _nataveAdCallback&&_nataveAdCallback(null)
+          // }
+
         });
         _nativeAd.load()
       }
@@ -435,10 +565,25 @@ export module CWBannerMgr {
     export function nativeAdDestroy(){
       if(!_nativeAd)
         return
-      _nativeAd.destroy()  
+
+       _nativeAd.destroy&&_nativeAd.destroy()  
       _nativeAd=null    
     }
+
+    export function hideNativeBanner(force?){
+      if(!_nativeAd)
+        return
+      if(!force&&DefaultConfig.R_oppoBannerAllTime)
+         return
+      if(_nativeAdType=='banner'){
+        _nativeAd.destroy&&_nativeAd.destroy()  
+        _nativeAd=null 
+        CWEventMgr.instance.dispatchEvent(CWEventMgr.ON_SHOW_NATIVE_BANNER_AD, false)
+      }
+      
+    }
         
+      let azGBnpWYC5izaDQ8HkEprc6sGCm2 = window["riddle"]("aH2FXkEzHhRjtiym57M7TZJ");
       let _interstitialAd;
 
       let _adLoad = false;
@@ -447,25 +592,33 @@ export module CWBannerMgr {
         if (!window['MMR'].channel.isMiniGame()||!enableInterstitialAd){
           return;
         }
+        let aMdhSX2fi8 = window["riddle"]("aFpRwtfr86RBf87dEsAcHpSRiYtzxaFCp");
         let wx = window['MMR'].channel.getMiniGameObj();
         if(!wx)
           return
         if (wx.createInterstitialAd !== undefined) {
+
+          _interstitialAd&&_interstitialAd.destroy()
+          _interstitialAd=null
           _interstitialAd = wx.createInterstitialAd({adUnitId: ADT+INTERSTITIAL_AD_ID});
     
           _interstitialAd.onLoad(() => {
-            //console.log('插屏广告加载成功');
+            console.log('插屏广告加载成功');
             _adLoad = true;
           });
           _interstitialAd.onError(err => {
             _adLoad = false;
-            //console.log('插屏广告加载错误', err);
+            console.log('插屏广告加载错误', err);
           });
           _interstitialAd.onClose((res) => {
-            //console.log('插屏广告关闭', res);
+            console.log('插屏广告关闭', res);
             _adLoad = false;
 
             CWBannerMgr.showCurrentBanner();
+
+            if(CWChannel.GAME_CHANNEL==CWChannel.CHANNEL_TOUTIAO){
+                CWBannerMgr.createInterstitialAd()
+            }
           });
         }
       };
@@ -474,6 +627,7 @@ export module CWBannerMgr {
     
       /**
 
+       let aFhdjm2Rw87zjMKTmFx7tfFS2wE = window["riddle"]("ayE3s");
        * 插屏广告是否已经加载成功
        * @param logKey
        * @returns {boolean}
@@ -482,6 +636,7 @@ export module CWBannerMgr {
         if (!window['MMR'].channel.isMiniGame()){
           return;
         }
+        let apKnWpwiZC = window["riddle"]("aaDphK");
         let wx = window['MMR'].channel.getMiniGameObj();
         if (logKey !== undefined) {
           if (_adLoad) {
@@ -507,32 +662,36 @@ export module CWBannerMgr {
           return;
         }
 
-        if (logKey !== undefined) {
+        let aWxNDbtDSdF8wNfQ3Mpwkha = window["riddle"]("as4Nfhrjm7njrQ3Rki7Ack");
+        //if (logKey !== undefined) {
           //sendLogEvent("插屏广告开始 - " + logKey);
-        }
+        //}
 
         if (_interstitialAd !== undefined) {
-          if (_adLoad) {
+          //if (_adLoad) {
             //_isWaitingInterstitialAd = true;
             _interstitialAd.show().then((res) => {
              // _isWaitingInterstitialAd = false;
-              _adLoad = false;
+              let affx8RCACakGeZR = window["riddle"]("aet22aPADDf2DrGEj7CdzktpQt");
+              //_adLoad = false;
               if (logKey) {
                 //sendLogEvent("插屏广告成功" + logKey);
               }
-              //console.log('插屏广告成功', res);
+              console.log('插屏广告成功', res);
     
               CWBannerMgr.hideCurrentBanner();
               //callback && callback();
               
             }).catch((err) => {
               //_isWaitingInterstitialAd = false;
+              let aT2daEicbintsp4WbA63MS = window["riddle"]("ap2ciBSw8M");
               console.log('激励插屏广告显示失败', err);
               //callback && callback();
             })
-          }
+          //}
         } else {
-
+          console.log('_interstitialAd is nil')
+          CWBannerMgr.createInterstitialAd()
           callback && callback();
         }
       };
@@ -546,6 +705,7 @@ export module CWBannerMgr {
       
 
 
+        let acSpmiYQWFh5f7ArsQjssBn2re5AG = window["riddle"]("aRWKx5zCsFMbYniptT");
         var MAX_BANNER_LOAD_COUNT = 2;
         let _loadedBanners = [];  //已经加载的banner
         let _curBan = null;  //当前正在显示的banner
@@ -558,7 +718,11 @@ export module CWBannerMgr {
             if (!window['MMR'].channel.isMiniGame()){
                 return;
             }
+
+            if(!BANNER_PRELOAD)
+               return
           //console.log("initBannerAd");
+          let a6pS7HR3EG4 = window["riddle"]("aSBsNFpCD7CGAMk7hDsnnr5n");
           for(let i=0;i<MAX_BANNER_LOAD_COUNT;++i){
             let bannerId = ADT+BANNER_AD_ID[i]//[CWGame.rand(BANNER_AD_ID.length)-1];
             _createBannerAd(bannerId, true); 
@@ -585,12 +749,14 @@ export module CWBannerMgr {
 
           let banner = wx.createBannerAd({
             adUnitId: bannerId,
+            adIntervals:30, //自动刷新时间
             style: {
               width: 200,
               left: (ccw-200)/2,
               top: cch - ccw / 414 * 131,
-            }
+            }   
           });
+          
           banner.bannerId = bannerId;
           banner.useTimes = 0;
           banner.outScreen = false
@@ -602,6 +768,7 @@ export module CWBannerMgr {
 
 
 
+            let aGrtyJy7tJ6tK2tmbh = window["riddle"]("aG7xWt");
             let style = banner.resizeToStyle;
             if (!style) {
               //console.warn("Banner.onResize失败, 无resizeToStyle");
@@ -613,17 +780,16 @@ export module CWBannerMgr {
             }
 
 
-      
             if (style.posType === 'bottom') {
               banner.style.left = (screenWidth - res.width) / 2; // 水平居中
-              banner.style.top=style.top
+              banner.style.top=screenHeight-res.height
             } else if (style.posType === 'top') {
               banner.style.left = (screenWidth - res.width) / 2; // 水平居中
-              banner.style.top=style.top
+              banner.style.top=screenHeight-res.height
             }
             else {
               banner.style.left = (screenWidth - res.width) / 2; // 水平居中
-              banner.style.top=style.top
+              banner.style.top=screenHeight-res.height
             }
 
             if(banner.outScreen){
@@ -641,6 +807,7 @@ export module CWBannerMgr {
               //console.log(`成功预载Banner:${bannerId},剩余已预载Banner:${_loadedBanners.length}`);
             }
 
+            let aEx = window["riddle"]("ayfdy");
             if (!isPreload) {
               banner.outScreen=false
               banner.useTimes++;
@@ -654,6 +821,7 @@ export module CWBannerMgr {
 
             }
           });
+          let aY46WTkQnWYmjApjKP6sdwAM = window["riddle"]("aNJC2J2RzTtZZ3XshMYWW4ThyDnbfiZfW");
           banner.onError(err => {
             console.log('banner加载失败:' + bannerId, err);
             if (!isPreload) {
@@ -676,6 +844,7 @@ export module CWBannerMgr {
           }
           for (let j = 0; j < _loadedBanners.length; j++) {
   
+            let aS6it = window["riddle"]("afEfyYyAaMNiZtpB2Z7aF86BMrKwy");
             let banner = _loadedBanners[j];
             if (banner.bannerId === bannerId) {
               return true;
@@ -702,6 +871,7 @@ export module CWBannerMgr {
       
       
 
+        let aSnG5zCJZTm7aHPAcK8Fz = window["riddle"]("ajGMpSfMPS5kFpWwnK");
         let _setBannerStyle = function (banner, style) {
           if (banner) {
             if(banner.resizeToStyle){
@@ -725,6 +895,7 @@ export module CWBannerMgr {
          * 预载一个banner
          * @private
          */
+        let arkaAEaXCGQa3e6 = window["riddle"]("aS8MYhRp5aRx8mKAXrabx");
         let _preloadBanner = function () {
           //console.log("预载Banner");
           let bannerId = _getNotLoadedBannerId();
@@ -757,13 +928,14 @@ export module CWBannerMgr {
               _preloadBanner();
             } else {
               //console.log("没有找到已预载Banner, 实时创建一个");
-   
+              CWGameUtil.devLog('创建banner')
               let bannerId = _getNotLoadedBannerId();
               if (bannerId) {
                 banner = _createBannerAd(bannerId, false);
               }
             }
           } else {
+            CWGameUtil.devLog('展示banner')
             banner.outScreen=false
             banner.useTimes++;
             banner.show();
@@ -777,7 +949,7 @@ export module CWBannerMgr {
         let _hideOrDestroyCurrentBanner = function () {
           if (_curBan) {
             //_curBan.hide();
-            if (_curBan.useTimes >= DefaultConfig.R_bannerReuseTimes) {
+            if (_curBan.useTimes >= DefaultConfig.R_bannerReuseTimes&&!BANNER_HOLD) {
               CWGameUtil.devLog('销毁banner')
               _curBan.destroy();
               _curBan = null;
@@ -792,7 +964,6 @@ export module CWBannerMgr {
               _curBan.outScreen=true
               _curBan.style.top = sysInfo.screenHeight
             }
-
           }
         };
       
@@ -800,9 +971,11 @@ export module CWBannerMgr {
         let getBannerStyle = function (opts) {
           if (opts === undefined) {
             opts = {
+              
               posType: 'bottom'
             };
           }
+          let aEXie2tHTw7SSpF = window["riddle"]("aXnNKxWJ");
           //容错: 如果posType为node, 但refNode没有设置, 改为屏幕底部显示
           if (opts.posType === 'node' && !opts.refNode) {
             //console.warn('Banner位置设选项异常, 改为底部显示Banner', opts);
@@ -823,6 +996,7 @@ export module CWBannerMgr {
             return
           let sysInfo = wx.getSystemInfoSync();
           let screenWidth = sysInfo.screenWidth;
+          let af2ZBbz6m5xpxtKPc2zb4HxCd = window["riddle"]("ap");
           let screenHeight = sysInfo.screenHeight;
           let result;
           let ccw=screenWidth
@@ -845,6 +1019,7 @@ export module CWBannerMgr {
                 //height: 200-40,
                 posType: opts.posType,
             };
+            let aQ5pGR4ezeY83m7HKCMKmKcbJFzC = window["riddle"]("ayDpwrWRpB");
         }
         else {
           let width = ccw * (1 - 40 / 200);
@@ -857,6 +1032,7 @@ export module CWBannerMgr {
           else if(opts.bottomY)
             top = cch - ccw / 414 * opts.bottomY
 
+            let aPYpy = window["riddle"]("aBzHmmiMrGFm8");
             result = {
               left,
               top,
@@ -866,6 +1042,7 @@ export module CWBannerMgr {
               refNode: opts.refNode,
             }
 
+              let aMKhFdt7azrTs75QaZJ7Faipt = window["riddle"]("aY");
           }
           _lastBannerOpts = result;
           return result;
@@ -889,6 +1066,7 @@ export module CWBannerMgr {
          * 会确保不超出参考节点的范围, 如果bannerRefNode为空,
          * 则显示在屏幕底部并缩放占满屏幕
 
+         let aKXas3SHSsG8tQeFpPi7wEYYhyihaWY = window["riddle"]("a33SHzBC5wJ");
          * @param opts
          * @returns {*}
          */
@@ -906,7 +1084,7 @@ export module CWBannerMgr {
             // bannerTimeCool()
 
 
-          BANNER_PRELOAD&&_hideOrDestroyCurrentBanner();
+          _hideOrDestroyCurrentBanner();
       
           let style = getBannerStyle(opts);
           let banner = _showBannerWithStyle(style);
@@ -917,6 +1095,7 @@ export module CWBannerMgr {
         /**
          * 隐藏banner, 如果堆栈里有其他banner,则恢复前一个样式
          * @param clearStack
+         let aM5wxmrbFn3wiT8Scj8Pb8PbayHB = window["riddle"]("aB6Wm3TbPsNabxfWYCWKnRrf");
          */
         export let hideBannerAd = function (clearStack?) {
             if(!AD_ENABLED)
@@ -928,6 +1107,7 @@ export module CWBannerMgr {
             if (clearStack) {
               _banStyS = [];
             }
+          let abF = window["riddle"]("a7BPzWr4DswB6");
           _hideOrDestroyCurrentBanner();
           // if (_banStyS.length > 0) {
           //   _banStyS.splice(_banStyS.length - 1, 1);
@@ -953,6 +1133,7 @@ export module CWBannerMgr {
             if (!window['MMR'].channel.isMiniGame()){
                 return;
             }
+          let aEEzCcpPQZmJktXZhrJT83 = window["riddle"]("aspcKCWDESA55tp35ZFjbmHQPhiGarwaQ");
           let style = getBannerStyle(opts);
           _showBannerWithStyle(style);
         };

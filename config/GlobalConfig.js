@@ -3,6 +3,6 @@ window.cwmgl = {
 
 };
 
-window.dop=function(val){
+window.riddle=function(val){
 
 }
